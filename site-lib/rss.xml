@@ -1,5 +1,215 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alsac'IA - Formation]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.svg</url><title>Alsac'IA - Formation</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 11 Aug 2026 12:50:32 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 11 Aug 2026 12:50:30 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Accueil]]></title><description><![CDATA[<a data-tooltip-position="top" aria-label="https://kumu.io/alsacia/badges-competences" rel="noopener nofollow" class="external-link is-unresolved" href="https://kumu.io/alsacia/badges-competences" target="_self">Consulter l'arbre de compétences</a><br><a data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Initié à l'IA générative</a><br>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Alsac'IA - Formation]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.svg</url><title>Alsac&apos;IA - Formation</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 11 Aug 2026 13:44:01 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 11 Aug 2026 13:43:58 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[Comprendre le concept de RAG]]></title><description><![CDATA[Objectifs
+À l'issue de cette micro-compétence, vous êtes capable de : distinguer ce qui provient des connaissances du modèle de ce qui provient des documents fournis ;
+décrire les trois étapes d'une génération augmentée par recherche : indexation, recherche, génération ;
+expliquer pourquoi ce mécanisme réduit les réponses inventées sans les supprimer ;
+anticiper les causes d'échec les plus fréquentes. Quand une IA vous répond, l'information peut venir de deux endroits — et ils n'ont pas du tout la même fiabilité.La mémoire du modèle. Ce qu'il a absorbé pendant son entraînement. C'est vaste, mais flou, daté, non vérifiable et non traçable. Impossible de savoir d'où sort une phrase.Les documents qu'on lui fournit. Un texte présent dans la conversation, ou récupéré automatiquement dans une base documentaire. C'est précis, à jour si le document l'est, et traçable : on peut remonter à la source.La distinction fondamentale
+Le modèle raisonne et rédige ; les documents apportent les faits. Un bon assistant professionnel maximise la seconde source et minimise la première.
+RAG signifie Retrieval-Augmented Generation — en français, génération augmentée par recherche.Le principe tient en une phrase : avant de répondre, l'assistant va d'abord chercher les passages pertinents dans une base documentaire, puis rédige sa réponse à partir de ces passages.C'est le mécanisme derrière tous les assistants « branchés » sur les documents d'une organisation : ceux qui répondent sur vos délibérations, vos procédures internes, vos guides métier. La différence avec un assistant généraliste n'est pas que le modèle est « plus intelligent » — c'est qu'il a le document sous les yeux.1️⃣ Indexation — en amont, une seule fois
+Les documents sont découpés en morceaux de taille réduite (quelques paragraphes chacun), puis convertis en représentations numériques qui capturent leur sens. Le tout est rangé dans un index consultable.
+C'est cette conversion qui permet, plus tard, de retrouver un passage parlant de « prise en charge des personnes âgées » à partir d'une question sur « l'aide au maintien à domicile » — alors qu'aucun mot n'est commun aux deux formulations.
+2️⃣ Recherche — à chaque question
+Votre question subit la même conversion, puis le système sélectionne les quelques morceaux les plus proches de votre demande. Généralement entre 3 et 10 passages.
+C'est l'étape déterminante : si les bons passages ne sont pas trouvés ici, aucune qualité de rédaction ne rattrapera la réponse.
+3️⃣ Génération — la rédaction finale
+Les passages retenus sont transmis au modèle avec votre question et une consigne du type « réponds uniquement à partir de ces extraits, et cite tes sources ». Le modèle rédige alors la réponse.
+D'où les citations et liens vers les documents que vous voyez apparaître dans ce type d'assistant.
+En résumé : vos documents → découpés et indexés → recherche des passages utiles → rédaction de la réponse à partir de ces passages.
+Les faits viennent de vos documents, pas de la mémoire diffuse du modèle.
+Les réponses sont traçables : vous pouvez ouvrir la source et vérifier.
+Le contenu est à jour dès lors que la base documentaire l'est.
+L'assistant peut répondre sur des sujets strictement internes, qu'aucun modèle généraliste ne connaît.
+Mais les hallucinations ne disparaissent pas
+Le RAG réduit fortement l'invention, il ne la supprime pas. Trois raisons : Si la recherche échoue, le modèle reçoit des passages hors sujet — et il répond quand même, en comblant avec sa mémoire.
+Il peut mal interpréter un passage pourtant correct : contresens, généralisation abusive, condition oubliée.
+Une citation n'est pas une preuve. Le document cité peut être réel et la phrase attribuée inexacte. Il faut ouvrir la source, pas se contenter de la voir affichée. Le réflexe qui change tout
+Regardez toujours les sources citées avant de lire la réponse. Si elles sont absentes, hors sujet ou datées, la réponse est suspecte quel que soit son contenu. Ce simple geste vous évite la majorité des erreurs.
+Les quatre points clés Deux sources possibles : la mémoire du modèle (floue, non traçable) et les documents fournis (précis, traçables).
+Le RAG cherche d'abord, rédige ensuite : indexation, recherche, génération.
+Il réduit les inventions sans les supprimer — l'étape de recherche peut échouer.
+Une citation n'est pas une preuve : ouvrez la source et vérifiez sa date. 3 minutes.Si vous disposez d'un assistant branché sur des documents :
+Posez une question sur un sujet que vous maîtrisez.
+Avant de lire la réponse, regardez les sources citées : sont-elles les bons documents ? À jour ?
+Ouvrez-en une et vérifiez que la réponse dit bien ce que dit le document.
+Posez ensuite une question volontairement hors du périmètre documentaire. Observez : l'assistant reconnaît-il qu'il ne sait pas, ou répond-il de mémoire sans le signaler ?
+Ce dernier test vous apprend le comportement exact de votre outil face à ses limites.
+Je distingue une réponse issue des documents d'une réponse issue de la mémoire du modèle.
+Je peux nommer les trois étapes du RAG et dire laquelle est la plus critique.
+J'explique pourquoi le RAG réduit les hallucinations sans les éliminer.
+Je vérifie les sources citées et leur date avant d'exploiter une réponse.
+Je sais reformuler une question quand les passages trouvés sont hors sujet.
+La mise en œuvre concrète d'un assistant documentaire est abordée au niveau 3, dans le badge Concepteur de solutions avec l'IA générative → <a data-href="Présentation - Badge 4" href="badges-niveau-3/présentation-badge-4.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Badge 4</a>.<br>Micro-compétence 5/5 — Badge <a data-tooltip-position="top" aria-label="Présentation - Initié à l'IA générative" data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Initié à l'IA générative</a><br>
+Précédente ← <a data-href="Adopter les bonnes pratiques d'usage de l'IA" href="badges-niveau-1/initié-à-l'ia-générative/adopter-les-bonnes-pratiques-d'usage-de-l'ia.html" class="internal-link" target="_self" rel="noopener nofollow">Adopter les bonnes pratiques d'usage de l'IA</a><br>
+🎓 Badge terminé — retour à <a data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Initié à l'IA générative</a>]]></description><link>badges-niveau-1/initié-à-l&apos;ia-générative/comprendre-le-concept-de-rag.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l&apos;IA générative/Comprendre le concept de RAG.md</guid><pubDate>Tue, 11 Aug 2026 13:41:01 GMT</pubDate></item><item><title><![CDATA[Adopter les bonnes pratiques d'usage de l'IA]]></title><description><![CDATA[Objectifs
+À l'issue de cette micro-compétence, vous êtes capable de : utiliser une IA dans un cadre professionnel sécurisé ;
+identifier les risques liés aux données sensibles ;
+respecter les règles de confidentialité ;
+adopter une posture responsable face aux contenus générés. Support de référence : Fiche réflexe de la DTDIA
+C'est le point de départ. Sur un service d'IA grand public, chaque mot que vous collez quitte le système d'information de la collectivité. Il transite vers un prestataire externe, peut être conservé, analysé, et selon les conditions du service, servir à entraîner le modèle.Coller un rapport social dans un outil grand public, c'est l'équivalent numérique de le laisser sur un banc.La règle des trois secondes
+Avant de coller quoi que ce soit, posez-vous la question :
+« Est-ce que j'accepterais que ce texte soit lu par quelqu'un d'extérieur à la collectivité ? »
+Si vous hésitez une seule seconde, ne collez pas.
+Tip
+En cas de doute sur l'outil à utiliser, la réponse est chez la DTDIA — pas dans le moteur de recherche.
+Quel que soit l'outil, tant qu'un cadre explicite ne l'autorise pas :
+❌ Données identifiantes d'usagers — nom, adresse, date de naissance, numéro de sécurité sociale, numéro de dossier ;
+❌ Données sensibles au sens du RGPD — santé, situation sociale, origine, opinions, orientation, condamnations ;
+❌ Données concernant des agents — évaluations, situations disciplinaires, éléments de rémunération, arrêts ;
+❌ Documents confidentiels — dossiers de marchés en cours, notes préparatoires non publiques, éléments juridiques d'un contentieux ;
+❌ Identifiants et secrets techniques — mots de passe, clés, adresses de serveurs internes.
+Le réflexe qui débloque presque tous les cas
+Anonymisez. Remplacez les éléments identifiants par des repères neutres avant de coller :
+« Madame Dupont, 78 ans, résidant à Sélestat » → « une personne de 78 ans ».
+Vous conservez tout l'intérêt de la demande et vous supprimez le risque. Dans la très grande majorité des situations, l'IA n'a aucun besoin de savoir de qui il s'agit.
+Trois conséquences pratiques :Vous restez l'auteur. Un document produit avec l'aide d'une IA engage l'agent qui le signe et la collectivité qui le diffuse. « C'est l'IA qui l'a écrit » n'existe pas comme justification.Rien ne sort sans relecture. Un contenu généré n'est jamais diffusé tel quel — ni à un usager, ni à un élu, ni en interne. Voir <a data-href="Évaluer de manière critique les résultats produits par une IA" href="badges-niveau-1/initié-à-l'ia-générative/évaluer-de-manière-critique-les-résultats-produits-par-une-ia.html" class="internal-link" target="_self" rel="noopener nofollow">Évaluer de manière critique les résultats produits par une IA</a>.L'IA n'a pas le dernier mot. Un contenu généré ne fonde pas une décision administrative. Sur ce qui touche aux droits d'une personne — attribution d'une aide, refus, orientation — la décision est prise et motivée par un agent.Dites simplement quand l'IA a contribué à un document de travail. C'est une pratique loyale envers vos collègues, et c'est ce qui permet à chacun de calibrer sa propre relecture. Un usage assumé et discuté progresse ; un usage caché reproduit les mêmes erreurs sans que personne les corrige.Les quatre points clés Ce que vous saisissez sort de la collectivité — outils validés uniquement pour le travail.
+Jamais de données identifiantes, sensibles, ni de documents confidentiels.
+Anonymisez : cela débloque la quasi-totalité des cas d'usage.
+Vous signez, vous répondez. Relecture systématique, aucune décision déléguée à l'IA. 2 minutes.Reprenez la dernière demande que vous avez faite à une IA — ou celle que vous comptez faire.
+Contient-elle un élément permettant d'identifier une personne ?
+Si oui, réécrivez-la en anonymisant.
+Vérifiez : la demande garde-t-elle tout son sens ? (Réponse : presque toujours oui.) Je sais quels outils sont validés par la collectivité et pour quel usage.
+Je peux citer trois catégories de données à ne jamais saisir.
+J'ai le réflexe d'anonymiser avant de coller.
+Je sais que la responsabilité du contenu diffusé m'incombe.
+Je sais qu'une décision administrative ne se délègue pas à une IA.
+<br>Micro-compétence 4/5 — Badge <a data-tooltip-position="top" aria-label="Présentation - Initié à l'IA générative" data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Initié à l'IA générative</a><br>
+Précédente ← <a data-href="Évaluer de manière critique les résultats produits par une IA" href="badges-niveau-1/initié-à-l'ia-générative/évaluer-de-manière-critique-les-résultats-produits-par-une-ia.html" class="internal-link" target="_self" rel="noopener nofollow">Évaluer de manière critique les résultats produits par une IA</a> | Suivante → <a data-href="Comprendre le concept de RAG" href="badges-niveau-1/initié-à-l'ia-générative/comprendre-le-concept-de-rag.html" class="internal-link" target="_self" rel="noopener nofollow">Comprendre le concept de RAG</a>]]></description><link>badges-niveau-1/initié-à-l&apos;ia-générative/adopter-les-bonnes-pratiques-d&apos;usage-de-l&apos;ia.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l&apos;IA générative/Adopter les bonnes pratiques d&apos;usage de l&apos;IA.md</guid><pubDate>Tue, 11 Aug 2026 13:40:37 GMT</pubDate></item><item><title><![CDATA[Évaluer de manière critique les résultats produits par une IA]]></title><description><![CDATA[Objectifs
+À l'issue de cette micro-compétence, vous êtes capable de : détecter des erreurs ou des incohérences ;
+vérifier les informations importantes ;
+identifier des biais ou des hallucinations ;
+décider si un contenu est exploitable professionnellement. Un collègue qui doute hésite, nuance, dit « je crois ». Une IA générative, non. Elle produit une erreur parfaitement rédigée, avec le même ton assuré qu'une information exacte.C'est là tout le danger dans un contexte administratif : nous sommes entraînés à juger la fiabilité d'un texte à sa forme — vocabulaire précis, structure soignée, références citées. Sur un texte généré, ces signaux ne veulent plus rien dire. Un article de loi inventé a exactement l'allure d'un article de loi réel.Le principe
+La qualité de la rédaction ne dit rien de l'exactitude du contenu. C'est un réflexe de lecture à désapprendre.
+L'hallucination — le modèle invente un fait, une source, une référence. C'est l'erreur la plus fréquente et la plus grave. Elle se concentre sur ce qui est précis et vérifiable : numéros d'articles, dates, montants, noms d'organismes, titres de rapports, statistiques. Paradoxalement, plus la réponse est précise, plus il faut se méfier.L'obsolescence — l'information était exacte, elle ne l'est plus. Un barème, un plafond de ressources, une procédure, un intitulé de service : le modèle répond avec ce qu'il a appris, sans savoir que cela a changé.Le biais — le contenu reflète des stéréotypes présents dans les textes d'entraînement. Rédigez une offre de poste ou un cas d'usager type, et regardez quels prénoms, quels métiers, quelles situations familiales apparaissent spontanément.L'approximation lissée — le plus insidieux. Le texte est globalement juste mais gomme une nuance qui compte : une condition d'éligibilité manquante, une exception non mentionnée, une compétence attribuée à la mauvaise collectivité. Rien n'est franchement faux, et pourtant le document induit en erreur.Ralentissez systématiquement quand vous voyez :
+🚩 une référence juridique précise — article, décret, délibération, date ;
+🚩 un chiffre — montant, pourcentage, effectif, délai ;
+🚩 un nom propre — organisme, dispositif, personne, service ;
+🚩 une citation entre guillemets ;
+🚩 une affirmation catégorique sans nuance sur un sujet complexe ;
+🚩 un contenu qui confirme trop bien ce que vous espériez lire ;
+🚩 un sujet récent ou qui a connu une réforme.
+1. Lire en résistant à la fluidité. Le texte se lit bien, donc vous le lisez vite. Forcez-vous à ralentir sur les passages porteurs de faits.2. Repérer et sortir de l'outil. Isolez les affirmations vérifiables. Puis allez les confronter ailleurs : Légifrance, service-public.fr, l'intranet, le site de la collectivité, votre référent métier.Ne demandez jamais à l'IA de se vérifier elle-même
+« Es-tu sûr ? » ou « Cite tes sources » ne produit pas une vérification : le modèle génère simplement une nouvelle réponse plausible. Il peut très bien inventer une source pour justifier une invention. La vérification se fait toujours hors de l'outil.
+3. Mobiliser votre expertise métier. Vous connaissez votre domaine mieux que le modèle. Si quelque chose vous semble étrange, ce n'est pas vous qui vous trompez.L'exigence de vérification dépend de l'enjeu, pas de la qualité apparente du texte.La question qui tranche
+« Suis-je prêt à signer ce texte et à en répondre ? »
+Si la réponse est non, il n'est pas prêt à sortir. Vous ne pourrez jamais invoquer l'outil pour justifier une erreur : la responsabilité reste celle de l'agent et de la collectivité.
+Ce que produit une demande sur les aides sociales
+Demande : « Quelles sont les conditions d'attribution de l'APA à domicile ? »
+Extrait de réponse : « L'allocation personnalisée d'autonomie est attribuée aux personnes de 60 ans et plus en perte d'autonomie, classées en GIR 1 à 4. Le montant maximal du plan d'aide s'élève à 1 807,89 € par mois pour le GIR 1 (article R. 232-10 du Code de l'action sociale et des familles). »
+Ce qu'il faut faire : Le cadre général (60 ans, GIR 1 à 4) est exact → plausible, à confirmer.
+Le montant au centime près → 🚩 à vérifier impérativement, ces barèmes sont revalorisés chaque année.
+La référence à l'article R. 232-10 → 🚩 à vérifier sur Légifrance, le numéro peut être inventé.
+Ce qui manque : les conditions de résidence, la participation financière du bénéficiaire, les modalités d'évaluation à domicile. Verdict : utilisable comme trame de travail. Jamais tel quel dans une réponse à un usager.
+Les quatre points clés Un texte bien écrit peut être entièrement faux.
+Méfiance maximale sur : références juridiques, chiffres, noms propres, citations.
+La vérification se fait hors de l'outil — jamais en demandant à l'IA de se relire.
+Le critère de diffusion : « suis-je prêt à signer ? » 4 minutes.
+Demandez à l'IA une note de synthèse sur un dispositif que vous connaissez bien professionnellement.
+Surlignez chaque affirmation vérifiable : chiffres, références, noms.
+Vérifiez-en trois auprès d'une source officielle.
+Comptez : combien étaient exactes ? Combien approximatives ? Combien inventées ?
+Ce comptage vous donne votre propre repère de vigilance — bien plus utile qu'une consigne générale.
+Je ne confonds plus qualité de rédaction et exactitude.
+Je repère les quatre types d'erreurs : hallucination, obsolescence, biais, approximation.
+Je vérifie hors de l'outil, sur des sources officielles.
+J'adapte mon niveau de vérification à l'enjeu du document.
+Je me pose la question « suis-je prêt à signer ? » avant toute diffusion.
+Micro-compétence 3/5 — Badge <a data-tooltip-position="top" aria-label="Présentation - Initié à l'IA générative" data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Initié à l'IA générative</a><br>
+Précédente ← <a data-href="Rédiger des prompts efficaces" href="badges-niveau-1/initié-à-l'ia-générative/rédiger-des-prompts-efficaces.html" class="internal-link" target="_self" rel="noopener nofollow">Rédiger des prompts efficaces</a> | Suivante → <a data-href="Adopter les bonnes pratiques d'usage de l'IA" href="badges-niveau-1/initié-à-l'ia-générative/adopter-les-bonnes-pratiques-d'usage-de-l'ia.html" class="internal-link" target="_self" rel="noopener nofollow">Adopter les bonnes pratiques d'usage de l'IA</a>]]></description><link>badges-niveau-1/initié-à-l&apos;ia-générative/évaluer-de-manière-critique-les-résultats-produits-par-une-ia.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l&apos;IA générative/Évaluer de manière critique les résultats produits par une IA.md</guid><pubDate>Tue, 11 Aug 2026 13:39:44 GMT</pubDate></item><item><title><![CDATA[Rédiger des prompts efficaces]]></title><description><![CDATA[Objectifs
+À l'issue de cette micro-compétence, vous êtes capable de : rédiger une demande claire et concise ;
+contextualiser votre besoin ;
+améliorer un résultat par itération ;
+utiliser des structures simples de prompt. Un prompt, c'est simplement la demande que vous adressez à l'IA. La plupart des déceptions viennent d'une cause unique : la demande était claire dans votre tête, pas sur l'écran.Vous savez à qui s'adresse ce courrier, quel ton votre service emploie, quelle longueur est attendue. L'IA, elle, ne sait rien de tout cela. Face à un vide, elle ne demande pas de précision : elle comble avec le plus banal. D'où ces textes corrects mais génériques, qu'il faut réécrire entièrement.La règle de base
+Tout ce que vous ne précisez pas, l'IA le choisit à votre place — et elle choisit toujours le plus moyen.
+Un prompt efficace tient en quatre éléments. Ils ne sont pas tous indispensables à chaque fois, mais dès que le résultat compte, les quatre valent le détour.Le format est le plus souvent oublié et pourtant le plus rentable : c'est lui qui évite de tout reprendre à la main.Prompt faible
+Fais-moi un compte rendu de réunion. Résultat : un modèle générique, sans rapport avec votre réunion, inutilisable.
+Prompt efficace
+Tu es assistant de direction dans une collectivité territoriale. Contexte : réunion de service du 12 mars, 8 participants, sur
+l'organisation des congés d'été. Tâche : rédige le compte rendu à partir de mes notes ci-dessous.
+Fais ressortir clairement les décisions prises et les actions à
+mener, avec le responsable de chaque action. Format : 1 page maximum, titres par thème, décisions et actions
+en listes séparées. Ton neutre et factuel. Mes notes :
+[collez vos notes ici] Résultat : un document directement exploitable, à relire plutôt qu'à réécrire.
+La différence de temps de rédaction du prompt est d'une minute. La différence de temps de reprise du résultat est d'un quart d'heure.Deuxième levier, aussi puissant que le R.C.T.F. : fournissez vos propres éléments.Vos notes brutes, le courrier auquel vous répondez, la délibération à résumer, un exemple d'un texte que vous aviez bien réussi l'an dernier. Un modèle avec de la matière produit un texte spécifique ; un modèle sans matière produit un texte moyen.L'astuce la plus efficace du lot
+Collez un exemple de ce que vous voulez obtenir et écrivez : « Reprends exactement ce ton et cette structure. » Aucune description ne vaut un exemple.
+Le premier résultat est un brouillon, pas une réponse. Le réflexe naturel — réécrire la demande depuis le début — est le mauvais : vous perdez tout ce qui fonctionnait déjà.Relancez plutôt sur ce qui ne va pas, en restant dans la même conversation :
+« C'est trop long, réduis de moitié en gardant les décisions. »
+« Le ton est trop familier, passe au registre administratif. »
+« Le paragraphe 2 est faux : la commission se réunit en juin, pas en mai. Corrige et poursuis. »
+« Garde cette structure, mais développe la partie sur les délais. »
+Trois relances précises valent mieux qu'un prompt parfait du premier coup. C'est un dialogue, pas un formulaire.Résumer un document long
+Tu es analyste dans une collectivité territoriale.
+Résume le document ci-dessous pour un élu qui n'a pas le temps
+de le lire.
+Fais apparaître : l'objet, les 3 points essentiels, les décisions
+attendues, les points de vigilance.
+20 lignes maximum, langage clair, pas de jargon. Document :
+[coller] Reformuler en langage clair pour un usager
+Réécris le texte ci-dessous pour qu'il soit compris par une
+personne sans connaissance du vocabulaire administratif.
+Conserve strictement le sens et les informations juridiques.
+Phrases courtes, voix active, pas de sigle non expliqué. Texte :
+[coller] Préparer une réunion
+Tu es chef de projet dans une collectivité territoriale.
+Prépare l'ordre du jour d'une réunion de 1 h sur [sujet],
+avec 6 participants de [services].
+Objectif de la réunion : [objectif].
+Pour chaque point : durée, objectif, personne qui l'introduit.
+Présente le tout sous forme de tableau. Les quatre points clés R.C.T.F. — Rôle, Contexte, Tâche, Format. Le format est le plus rentable.
+Ce que vous ne précisez pas, l'IA le choisit — au plus banal.
+Donnez de la matière : vos notes, le document source, un exemple à imiter.
+Itérez dans la même conversation : corrigez ce qui cloche, ne réécrivez pas tout. 4 minutes.
+Choisissez une tâche d'écriture réelle qui vous attend cette semaine.
+Demandez-la d'abord en une phrase, comme vous le feriez spontanément. Regardez le résultat.
+Reformulez avec les quatre ingrédients R.C.T.F. et en collant vos éléments. Comparez.
+Faites deux relances ciblées pour arriver à un texte que vous garderiez vraiment.
+Conservez le prompt qui a fonctionné : vous le réutiliserez.
+Je sais nommer les quatre ingrédients d'un prompt efficace.
+Je pense systématiquement à préciser le format et la longueur attendus.
+Je fournis mes propres documents plutôt que de décrire ce qu'ils contiennent.
+Je corrige par relances successives au lieu de tout réécrire.
+Micro-compétence 2/5 — Badge <a data-tooltip-position="top" aria-label="Présentation - Initié à l'IA générative" data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Initié à l'IA générative</a><br>
+Précédente ← <a data-href="Introduction à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/introduction-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Introduction à l'IA générative</a> | Suivante → <a data-href="Évaluer de manière critique les résultats produits par une IA" href="badges-niveau-1/initié-à-l'ia-générative/évaluer-de-manière-critique-les-résultats-produits-par-une-ia.html" class="internal-link" target="_self" rel="noopener nofollow">Évaluer de manière critique les résultats produits par une IA</a>]]></description><link>badges-niveau-1/initié-à-l&apos;ia-générative/rédiger-des-prompts-efficaces.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l&apos;IA générative/Rédiger des prompts efficaces.md</guid><pubDate>Tue, 11 Aug 2026 13:39:03 GMT</pubDate></item><item><title><![CDATA[Introduction à l'IA générative]]></title><description><![CDATA[Objectifs
+À l'issue de cette micro-compétence, vous êtes capable de : définir simplement ce qu'est une IA générative ;
+distinguer IA classique et IA générative ;
+identifier des usages utiles dans votre environnement professionnel ;
+connaître les limites générales des modèles d'IA. Une IA générative est un programme capable de produire un contenu nouveau — du texte, une image, un tableau, du code — à partir d'une consigne écrite en langage courant.La rupture est là : vous n'apprenez pas un logiciel, vous expliquez ce que vous voulez. Il n'y a ni menu à connaître, ni syntaxe à respecter. C'est aussi ce qui rend l'outil trompeur : parce qu'il répond en français fluide, on le croit compétent partout.Le modèle a lu une quantité colossale de textes et y a appris des régularités statistiques : quels mots suivent habituellement quels autres, dans quel contexte. Quand vous lui posez une question, il ne cherche pas une réponse dans une base de données — il construit une réponse mot après mot, en choisissant à chaque étape la suite la plus plausible.La conséquence à retenir
+Le modèle produit ce qui est vraisemblable, pas ce qui est vrai. La plupart du temps les deux coïncident. Parfois non — et rien dans la forme de la réponse ne vous prévient.
+L'IA n'est pas nouvelle dans une collectivité : un correcteur orthographique, un filtre anti-spam ou un moteur de recherche en utilisent depuis des années. Ce qui change, c'est la nature de la tâche.Cette dernière ligne surprend souvent. Ce n'est pas un défaut : le modèle introduit volontairement une part de variation. Ne soyez donc pas déstabilisé si vous n'obtenez pas deux fois le même texte.L'IA générative est réellement efficace sur les tâches où vous êtes compétent pour juger le résultat. C'est le critère qui compte.Le bon réflexe
+Utilisez l'IA pour partir de quelque chose plutôt que de rien. Le gain de temps est sur le premier jet, pas sur la version finale — celle-ci reste la vôtre.
+Quatre limites structurelles, qu'aucun outil ne corrige entièrement :Elle invente avec aplomb. Quand elle ne sait pas, elle ne s'arrête pas : elle produit une suite plausible. Un nom de décret, un article de loi, une référence bibliographique peuvent être entièrement fabriqués tout en paraissant parfaitement crédibles. C'est ce qu'on appelle une hallucination, et c'est le risque numéro un dans un contexte administratif.Elle ignore votre contexte. Elle ne connaît ni vos délibérations, ni votre organigramme, ni vos procédures internes — sauf si vous les lui fournissez, ou si l'outil est branché sur vos documents (voir <a data-href="Comprendre le concept de RAG" href="badges-niveau-1/initié-à-l'ia-générative/comprendre-le-concept-de-rag.html" class="internal-link" target="_self" rel="noopener nofollow">Comprendre le concept de RAG</a>).Ses connaissances ont une date. Le modèle a été entraîné jusqu'à un certain moment. Une réforme récente, un changement de tarif, une nouvelle réglementation peuvent lui échapper totalement.Elle reproduit les biais de ses textes d'origine. Stéréotypes de genre ou de métier, points de vue dominants, formulations datées : tout cela est présent dans les données d'entraînement et ressort dans les réponses.Le principe qui découle de tout ça
+Vous restez l'auteur et le responsable. L'IA produit une matière première ; la validation, la vérification et la signature sont à vous. Une réponse d'IA n'est jamais une source.
+Les quatre points clés Une IA générative produit du contenu à partir d'une consigne en langage courant.
+Elle assemble ce qui est plausible, elle ne consulte pas une base de vérités.
+Elle est utile là où vous savez juger le résultat.
+Elle invente, ignore votre contexte, date, et reproduit des biais : la vérification est non négociable. 3 minutes.
+Ouvrez l'outil d'IA mis à votre disposition et posez-lui une question dont vous connaissez déjà la réponse dans votre domaine de travail.
+Lisez attentivement : qu'est-ce qui est juste ? Qu'est-ce qui est approximatif ou faux ?
+Reposez exactement la même question dans une nouvelle conversation. Comparez les deux réponses.
+Cet exercice de trois minutes vous apprend plus sur les limites du modèle que n'importe quelle explication.
+Je sais expliquer en une phrase ce qu'est une IA générative.
+Je peux citer deux différences entre IA classique et IA générative.
+J'identifie trois tâches de mon quotidien où elle me ferait gagner du temps.
+Je sais ce qu'est une hallucination et pourquoi elle est difficile à repérer.
+<br>Micro-compétence 1/5 — Badge <a data-tooltip-position="top" aria-label="Présentation - Initié à l'IA générative" data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Initié à l'IA générative</a><br>
+Suivante → <a data-href="Rédiger des prompts efficaces" href="badges-niveau-1/initié-à-l'ia-générative/rédiger-des-prompts-efficaces.html" class="internal-link" target="_self" rel="noopener nofollow">Rédiger des prompts efficaces</a>]]></description><link>badges-niveau-1/initié-à-l&apos;ia-générative/introduction-à-l&apos;ia-générative.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l&apos;IA générative/Introduction à l&apos;IA générative.md</guid><pubDate>Tue, 11 Aug 2026 13:38:15 GMT</pubDate></item><item><title><![CDATA[Présentation - Initié à l'IA générative]]></title><description><![CDATA[Badge de niveau 1 — 45 minutes — Aucun prérequis
+Comprendre ce qu'est l'IA générative, interagir correctement avec elle, adopter de bonnes pratiques professionnelles et garder un regard critique sur les résultats produits.
+À tout agent de la Collectivité européenne d'Alsace, quel que soit son métier ou son niveau d'aisance avec le numérique. C'est le point d'entrée du parcours Alsac'IA : il ne demande aucune connaissance technique et ne suppose l'usage d'aucun outil en particulier.L'objectif n'est pas de faire de vous un spécialiste, mais de vous rendre autonome et lucide : savoir quand l'IA générative vous fait gagner du temps, quand elle vous en fait perdre, et où sont les limites à ne pas franchir dans un cadre professionnel.
+Expliquer avec vos mots ce qu'est une IA générative et en quoi elle diffère des outils numériques que vous connaissez déjà.
+Formuler une demande qui produit un résultat exploitable du premier coup, ou presque.
+Repérer une erreur, une invention ou un biais dans un texte généré, et décider s'il est diffusable.
+Travailler sans exposer de données qui ne doivent pas sortir de la collectivité.
+Comprendre pourquoi un assistant branché sur des documents répond mieux — et pourquoi il se trompe encore.
+Les cinq micro-compétences se suivent dans l'ordre : chacune s'appuie sur la précédente.Conseil
+Gardez un outil d'IA générative ouvert à côté de vous pendant la lecture. Chaque compétence se termine par une mise en pratique de quelques minutes : c'est là que l'essentiel s'ancre.
+Le badge est acquis lorsque vous êtes capable, sans relire les fiches :
+d'expliquer à un collègue la différence entre IA classique et IA générative ;
+de reformuler une demande vague en un prompt structuré ;
+de citer trois signaux qui doivent vous faire vérifier une réponse ;
+de dire ce qu'il ne faut jamais saisir dans un outil d'IA ;
+d'expliquer pourquoi un assistant peut citer un document et se tromper quand même.
+Une fois ce badge acquis, les badges de niveau 2 vous font passer à la pratique outillée :
+<a data-href="Présentation - Badge 2" href="badges-niveau-2/badge-2/présentation-badge-2.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Badge 2</a> — Praticien de l'IA générative avec Delibia
+<br><a data-href="Présentation Badge 3" href="badges-niveau-2/badge-3/présentation-badge-3.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation Badge 3</a> — Praticien de l'IA générative avec Copilot
+Parcours Alsac'IA — Collectivité européenne d'Alsace]]></description><link>badges-niveau-1/initié-à-l&apos;ia-générative/présentation-initié-à-l&apos;ia-générative.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l&apos;IA générative/Présentation - Initié à l&apos;IA générative.md</guid><pubDate>Tue, 11 Aug 2026 13:37:07 GMT</pubDate></item><item><title><![CDATA[Accueil]]></title><description><![CDATA[<img alt="visu_kumu.excalidraw.svg" src="visu_kumu.excalidraw.svg" target="_self"><br><a data-href="Présentation - Initié à l'IA générative" href="badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Initié à l'IA générative</a><br>
 <a data-href="Présentation - Badge 2" href="badges-niveau-2/badge-2/présentation-badge-2.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Badge 2</a><br>
-<a data-href="Présentation Badge 3" href="badges-niveau-2/badge-3/présentation-badge-3.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation Badge 3</a>]]></description><link>accueil.html</link><guid isPermaLink="false">Accueil.md</guid><pubDate>Tue, 11 Aug 2026 12:48:37 GMT</pubDate></item><item><title><![CDATA[Introduction à l'IA générative]]></title><link>badges-niveau-1/initié-à-l'ia-générative/introduction-à-l'ia-générative.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l'IA générative/Introduction à l'IA générative.md</guid><pubDate>Tue, 11 Aug 2026 12:02:14 GMT</pubDate></item><item><title><![CDATA[Présentation - Initié à l'IA générative]]></title><link>badges-niveau-1/initié-à-l'ia-générative/présentation-initié-à-l'ia-générative.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l'IA générative/Présentation - Initié à l'IA générative.md</guid><pubDate>Tue, 11 Aug 2026 11:56:43 GMT</pubDate></item><item><title><![CDATA[Présentation - Badge 4]]></title><link>badges-niveau-3/présentation-badge-4.html</link><guid isPermaLink="false">Badges - Niveau 3/Présentation - Badge 4.md</guid><pubDate>Tue, 11 Aug 2026 10:38:43 GMT</pubDate></item><item><title><![CDATA[Compétence 4]]></title><link>badges-niveau-1/initié-à-l'ia-générative/compétence-4.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l'IA générative/Compétence 4.md</guid><pubDate>Tue, 11 Aug 2026 07:57:21 GMT</pubDate></item><item><title><![CDATA[Compétence 3]]></title><link>badges-niveau-1/initié-à-l'ia-générative/compétence-3.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l'IA générative/Compétence 3.md</guid><pubDate>Tue, 11 Aug 2026 07:57:02 GMT</pubDate></item><item><title><![CDATA[Compétence 2]]></title><link>badges-niveau-1/initié-à-l'ia-générative/compétence-2.html</link><guid isPermaLink="false">Badges - Niveau 1/Initié à l'IA générative/Compétence 2.md</guid><pubDate>Tue, 11 Aug 2026 07:56:45 GMT</pubDate></item><item><title><![CDATA[Compétence 2]]></title><link>badges-niveau-2/badge-3/compétence-2.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 3/Compétence 2.md</guid><pubDate>Tue, 11 Aug 2026 07:55:13 GMT</pubDate></item><item><title><![CDATA[Compétence 1]]></title><link>badges-niveau-2/badge-3/compétence-1.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 3/Compétence 1.md</guid><pubDate>Tue, 11 Aug 2026 07:55:06 GMT</pubDate></item><item><title><![CDATA[Présentation Badge 3]]></title><link>badges-niveau-2/badge-3/présentation-badge-3.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 3/Présentation Badge 3.md</guid><pubDate>Tue, 11 Aug 2026 07:54:57 GMT</pubDate></item><item><title><![CDATA[Compétence 2]]></title><link>badges-niveau-2/badge-2/compétence-2.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 2/Compétence 2.md</guid><pubDate>Tue, 11 Aug 2026 07:47:39 GMT</pubDate></item><item><title><![CDATA[Compétence 1]]></title><link>badges-niveau-2/badge-2/compétence-1.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 2/Compétence 1.md</guid><pubDate>Tue, 11 Aug 2026 07:47:36 GMT</pubDate></item><item><title><![CDATA[Présentation - Badge 2]]></title><link>badges-niveau-2/badge-2/présentation-badge-2.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 2/Présentation - Badge 2.md</guid><pubDate>Tue, 11 Aug 2026 07:46:42 GMT</pubDate></item><item><title><![CDATA[Toile]]></title><description><![CDATA[code# test a = 1
-Donc est<a data-href="Accueil" href="accueil.html" class="internal-link" target="_self" rel="noopener nofollow">Accueil</a> ToileTest latex et code]]></description><link>toile.html</link><guid isPermaLink="false">Toile.canvas</guid><pubDate>Tue, 11 Aug 2026 12:44:54 GMT</pubDate></item><item><title><![CDATA[Test latex et code]]></title><description><![CDATA[code# test a = 1
-Donc est<a data-href="Accueil" href="accueil.html" class="internal-link" target="_self" rel="noopener nofollow">Accueil</a> Toile]]></description><link>test-latex-et-code.html</link><guid isPermaLink="false">Test latex et code.md</guid><pubDate>Tue, 11 Aug 2026 12:30:44 GMT</pubDate></item></channel></rss>
+<a data-href="Présentation Badge 3" href="badges-niveau-2/badge-3/présentation-badge-3.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation Badge 3</a><br>
+<a data-href="Présentation - Badge 4" href="badges-niveau-3/présentation-badge-4.html" class="internal-link" target="_self" rel="noopener nofollow">Présentation - Badge 4</a>]]></description><link>accueil.html</link><guid isPermaLink="false">Accueil.md</guid><pubDate>Tue, 11 Aug 2026 13:11:54 GMT</pubDate><enclosure url="visu_kumu.excalidraw.svg" length="0" type="image/svg+xml"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;visu_kumu.excalidraw.svg&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Présentation - Badge 4]]></title><link>badges-niveau-3/présentation-badge-4.html</link><guid isPermaLink="false">Badges - Niveau 3/Présentation - Badge 4.md</guid><pubDate>Tue, 11 Aug 2026 10:38:43 GMT</pubDate></item><item><title><![CDATA[Compétence 2]]></title><link>badges-niveau-2/badge-3/compétence-2.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 3/Compétence 2.md</guid><pubDate>Tue, 11 Aug 2026 07:55:13 GMT</pubDate></item><item><title><![CDATA[Compétence 1]]></title><link>badges-niveau-2/badge-3/compétence-1.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 3/Compétence 1.md</guid><pubDate>Tue, 11 Aug 2026 07:55:06 GMT</pubDate></item><item><title><![CDATA[Présentation Badge 3]]></title><link>badges-niveau-2/badge-3/présentation-badge-3.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 3/Présentation Badge 3.md</guid><pubDate>Tue, 11 Aug 2026 07:54:57 GMT</pubDate></item><item><title><![CDATA[Compétence 2]]></title><link>badges-niveau-2/badge-2/compétence-2.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 2/Compétence 2.md</guid><pubDate>Tue, 11 Aug 2026 07:47:39 GMT</pubDate></item><item><title><![CDATA[Compétence 1]]></title><link>badges-niveau-2/badge-2/compétence-1.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 2/Compétence 1.md</guid><pubDate>Tue, 11 Aug 2026 07:47:36 GMT</pubDate></item><item><title><![CDATA[Présentation - Badge 2]]></title><link>badges-niveau-2/badge-2/présentation-badge-2.html</link><guid isPermaLink="false">Badges - Niveau 2/Badge 2/Présentation - Badge 2.md</guid><pubDate>Tue, 11 Aug 2026 07:46:42 GMT</pubDate></item></channel></rss>
